@@ -30,8 +30,7 @@ function [nameMe, diceMatrix] = cdice(densityDir, density, threshold, d)
             end
 
             cdice = (2*is)/(cont*d1+d2);
-            
-            
+           
             % Getting the names of compared files
             partsi = strsplit(densityDir(i).folder, '/');
             dirParti = partsi{end-1};
