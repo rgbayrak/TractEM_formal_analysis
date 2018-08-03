@@ -5,7 +5,7 @@ close all;
 %%% Merging masks for tractem old protocols
 % Author: roza.g.bayrak@vanderbilt.edu
 
-exDir = '~/Desktop/NF'; % only the dir address
+exDir = '/home-local/bayrakrg/Dropbox*VUMC*/complete_BLSA*';
 subjectDir = dir([exDir, '/*']);
 mask = 0;
 abbList = {'ac'; 'acr'; 'aic'; 'bcc'; 'cp'; 'cgc'; 'cgh'; 'cst'; 'fx'; 'fxst'; 'fl'; 'gcc'; 'icp'; 'ifo'; 'ilf'; 'ml'; 'm'; 'mcp'; 'ol'; 'olfr'; ...
@@ -32,7 +32,7 @@ for i = 3:length(subjectDir)
                ~strcmp(tractFolder(j).name,'postproc')&& ...
                ~strcmp(tractFolder(j).name,subjectDir(i).name)
             
-            if length(fileDir_mask) == 0
+            if isempty(fileDir_mask)
                disp(['For: ' fullfile(subjectDir(i).name,tractFolder(j).name), ', no ROA found!'])
 
             else

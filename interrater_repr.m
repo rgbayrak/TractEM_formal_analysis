@@ -4,10 +4,10 @@
 close all;
 clear all;
 clc;
-
+addpath('/home-nfs/masi-shared-home/home/local/VANDERBILT/bayrakrg/masimatlab/trunk/users/bayrakrg:')
 % Loading the data from multiple directories
-exDir              = '/home-local/bayrakrg/Dropbox*VUMC*/HCP';
-matDir = fullfile(exDir, 'HCP_mat');  % directory names are as follows -> subject_rater
+exDir              = '/home-local/bayrakrg/Dropbox*VUMC*/tractEM/BLSA';
+matDir = fullfile(exDir, 'BLSA_Dice_mat');  % directory names are as follows -> subject_rater
 
 % load the directories of dice coefficients and their corresponding name files
 dice_mat_files = dir(fullfile([matDir, '/*dice.mat']));
@@ -136,7 +136,7 @@ for i = 1:length(dir)
 end
 
 
-% figure(1); boxplot(dis_mat)
+figure(1); boxplot(dis_mat)
 
 tractList = {'Anterior Commissure'; 'Anterior Corona Radiata Left';'Anterior Corona Radiata Right'; 'Anterior Limb Internal Capsule Left';'Anterior Limb Internal Capsule Right';'Body Corpus Callosum';...
             'Cingulum Cingulate Gyrus Left';'Cingulum Cingulate Gyrus Right'; 'Cingulum Hippocampal Left'; ...
@@ -153,35 +153,34 @@ tractList = {'Anterior Commissure'; 'Anterior Corona Radiata Left';'Anterior Cor
             'Superior Fronto Occipital Fasciculus Left';'Superior Fronto Occipital Fasciculus Right';'Superior Longitudinal Fasciculus Left';'Superior Longitudinal Fasciculus Right';...
              'Sagittal Stratum Left';'Sagittal Stratum Right';'Tapetum Corpus Callosum';'Temporal Lobe Left';'Temporal Lobe Right';'Uncinate Fasciculus Left';'Uncinate Fasciculus Right'};
 
-% refline([0 .5])
-% set(figure(1),'Position', [1 1 1680 1050]);
-% xticklabels(tractList);
-% title('Inter Subject Tract Reproducibility')
-% xtickangle(45);
-% grid on;
-% ylim([0 1])
-% 
-% figure(2); distributionPlot(dis_mat, 'color', [0.3 0.6 0.08])
-% alpha(.9)
-% refline([0 .5])
-% set(figure(2),'Position', [1 1 1680 1050]);
-% xticklabels(tractList);
-% title('Inter Subject Tract Reproducibility')
-% xtickangle(45);
-% grid on;
-% ylim([-0.2 1.2])
-
-figure(3); boxplot(dir_mat_deep)
 refline([0 .5])
-set(figure(3),'Position', [1 1 1680 1050]);
-xticklabels(uni_name);
-title('Inter Rater Reproducibility')
+% set(figure(1),'Position', [1 1 1680 1050]);
+xticklabels(tractList);
+title('Inter Subject Tract Reproducibility')
+xtickangle(45);
+grid on;
+ylim([0 1])
+
+figure(2); distributionPlot(dis_mat, 'color', [0.3 0.6 0.08])
+alpha(.9)
+refline([0 .5])
+% set(figure(2),'Position', [1 1 1680 1050]);
+xticklabels(tractList);
+title('Inter Subject Tract Reproducibility')
+xtickangle(45);
 grid on;
 
-figure(4); distributionPlot(dir_mat_deep, 'color', [0.3 0.6 0.08])
-alpha(.8)
-refline([0 .5])
-set(figure(4),'Position', [1 1 1680 1050]);
-xticklabels(uni_name);
-title('Inter Rater Reproducibility')
-grid minor;
+% figure(3); boxplot(dir_mat_deep)
+% refline([0 .5])
+% % set(figure(3),'Position', [1 1 1680 1050]);
+% xticklabels(uni_name);
+% title('Inter Rater Reproducibility')
+% grid on;
+% 
+% figure(4); distributionPlot(dir_mat_deep, 'color', [0.3 0.6 0.08])
+% alpha(.8)
+% refline([0 .5])
+% % set(figure(4),'Position', [1 1 1680 1050]);
+% xticklabels(uni_name);
+% title('Inter Rater Reproducibility')
+% grid minor;

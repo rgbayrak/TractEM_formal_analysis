@@ -3,7 +3,7 @@ function [density] = load_density(densityDir)
     init = 0;
     for d = 1:length(densityDir)
         % Load nifti density .gz files 
-        density_nii = load_untouch_nii(fullfile(densityDir(d).folder, densityDir(d).name));
+        density_nii = load_nii(fullfile(densityDir(d).folder, densityDir(d).name));
 
         if ~init
             density = zeros([size(density_nii.img) length(densityDir)]);

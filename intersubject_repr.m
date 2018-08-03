@@ -4,7 +4,7 @@
 close all;
 clear all;
 clc;
-
+addpath('/home-nfs/masi-shared-home/home/local/VANDERBILT/bayrakrg/masimatlab/trunk/users/bayrakrg:')
 % Loading the data from multiple directories
 exDir              = '/home-local/bayrakrg/Dropbox*VUMC*/BLSA';
 matDir = fullfile(exDir, 'BLSA_mat');  % directory names are as follows -> subject_rater
