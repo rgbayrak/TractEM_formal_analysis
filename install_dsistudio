@@ -1,0 +1,41 @@
+# install git
+apt-get update && apt-get install -y git 
+
+# install dsi studio
+add-apt-repository ppa:ubuntu-toolchain-r/test
+apt-get update
+apt-get install -y g++-5
+
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
+date-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
+apt-get install -y qt5-qmake qt5-default
+apt-get install -y git libboost-all-dev zlib1g zlib1g-dev
+
+apt-get install -y libqt5opengl5-dev
+mkdir dsistudio
+cd dsistudio
+git clone -b master git://github.com/frankyeh/DSI-Studio.git src
+xdg-open https://github.com/frankyeh/TIPL/zipball/master
+unzip frankyeh-TIPL-1f2e8a2.zip
+mv frankyeh-TIPL-1f2e8a2 image
+
+cd src
+mkdir tipl
+cp -r ../image/* tipl/
+cd ..
+rm -rf image
+
+mkdir build
+cd build
+
+qmake ../src
+make
+make clean
+
+cd .. # Now you should be in the "dsistudio" directory
+unzip dsi_studio_64.zip
+cd dsi_studio_64
+find . -name '*.dll' -exec rm {} \;
+rmdir iconengines imageformats platforms printsupport
+rm dsi_studio.exe
+cp ../build/dsi_studio .
