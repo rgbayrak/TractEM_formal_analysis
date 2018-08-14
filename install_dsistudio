@@ -1,14 +1,14 @@
 # install dsi studio
-add-apt-repository ppa:ubuntu-toolchain-r/test
-apt-get update
-apt-get install -y g++-5
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get install -y g++-5
 
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
-date-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
-apt-get install -y qt5-qmake qt5-default
-apt-get install -y git libboost-all-dev zlib1g zlib1g-dev
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
+sudo apt-get install -y qt5-qmake qt5-default
+sudo apt-get install -y git libboost-all-dev zlib1g zlib1g-dev
 
-apt-get install -y libqt5opengl5-dev
+sudo apt-get install -y libqt5opengl5-dev
 mkdir dsistudio
 cd dsistudio
 git clone -b master git://github.com/frankyeh/DSI-Studio.git src
