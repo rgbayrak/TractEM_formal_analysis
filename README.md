@@ -1,2 +1,2 @@
 # tractem
-### requires NIfTI_20140122
+### requirements: NIfTI_20140122, dsistudio + template, fsl, spm12
