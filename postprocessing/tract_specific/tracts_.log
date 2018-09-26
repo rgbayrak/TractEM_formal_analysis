@@ -1,0 +1,6 @@
+Cannot open volume .//_L_seed1 for reading!
+DSI Studio May  3 2018, Fang-Cheng Yeh
+QFileInfo::absolutePath: Constructed with empty filename
+loading ...
+ does not exist. terminating...
+mv: cannot stat './/_tract.trk.gz.tdi.nii.gz': No such file or directory
