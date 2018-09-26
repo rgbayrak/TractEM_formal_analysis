@@ -7,7 +7,7 @@ resources = ['FA', 'TGZ']
 
 xutil = dax.XnatUtils
 
-xnat = xutil.get_interface("http://xnat2.vanderbilt.edu:8080/xnat", "bayrakrg", "Rb1156374")
+xnat = xutil.get_interface("http://xnat2.vanderbilt.edu:8080/xnat", "vuid", "passwd")
 
 assessors = xutil.list_project_assessors(xnat, proj_ID)
 
