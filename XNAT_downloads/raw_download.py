@@ -7,7 +7,7 @@ resources = ['NIFTI']
 
 xutil = dax.XnatUtils
 
-xnat = xutil.get_interface("http://xnat2.vanderbilt.edu:8080/xnat", "bayrakrg", "Rb1156374")
+xnat = xutil.get_interface("http://xnat2.vanderbilt.edu:8080/xnat", "vuid", "password")
 
 scans = xutil.list_project_scans(xnat, proj_ID)
 
