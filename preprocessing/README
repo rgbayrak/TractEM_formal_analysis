@@ -59,17 +59,18 @@ process_subject.m
 	segmentation to produce subject-specific region of interest masks for each 
 	lobe.
 
-make_native.m
-change_nan.m
-make_Tal.m
+unziptest.m
+make_native.m (dsi-studio)
 restore_nii_geom.m
 shift_COM.m
-affine_to_tal.m
-b_vec_transformation.m
 find_center_of_mass.m
+affine_to_tal.m (SPM)
+b_vec_transformation.m
+make_Tal.m (dsi-studio)
+change_nan.m
 
 make_lobes/*
-unziptest.m
+braincolor_to_lobes.m (SPM)
 zero_exmask_dwi.m
 ziptest.m
 	Support functions for the above in order.
