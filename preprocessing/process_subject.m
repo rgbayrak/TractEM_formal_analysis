@@ -15,7 +15,7 @@ grad = unziptest(grad);
 native_dir = fullfile(fileparts(dwi),'recon_native');
 tal_dir = fullfile(fileparts(dwi),'recon_tal');
 
-% Generate DTI-based FA image from the dwi images using DSI Studio
+% 1. Generate DTI-based FA image from the dwi images using DSI Studio
 % command line.
 disp('Making FA')
 [src,dti_fib,dti_fa0,dwi,bvals,bvecs,mask] = make_native( ...

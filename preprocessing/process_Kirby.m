@@ -19,7 +19,7 @@ kirby = '/share5/bayrakrg/tractEM/preprocessing/Kirby21';
 
 % Recon to use
 model = 'QBI4';
-%model = 'DTI';
+% model = 'DTI';
 
 
 %% Process
@@ -49,7 +49,7 @@ subjs = allsubjs;
 
 
 % Or hard code the subject list for testing etc
-% subjs = {'Kirby21_127/Kirby21_127_7'};
+subjs = {'Kirby21_113/Kirby21_113_30'};
 % subjs = subjs(2:end);
 
 

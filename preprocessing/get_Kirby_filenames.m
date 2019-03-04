@@ -15,11 +15,11 @@ mprage = 'MPRAGE-x-MPRAGE-x-MPRAGE';
 tgz = ['dtiQA_Kirby21-x-' subj '-x-' sess '.tgz'];
 tgz_dir = [kirby_dir '/' dtiqa '/TGZ'];
 fulltgz = [tgz_dir '/' tgz];
-system(['cd ' tgz_dir ' && tar -zxf ' fulltgz]);
+%system(['cd ' tgz_dir ' && tar -zxf ' fulltgz]);
 
-% Extract DWI and scheme file from tgz
-system(['cd ' tgz_dir ' && tar -zxf ' fulltgz ' extra/RegIm.nii']);
-system(['cd ' tgz_dir ' && tar -zxf ' fulltgz ' extra/scheme.txt']);
+%% Extract DWI and scheme file from tgz
+%system(['cd ' tgz_dir ' && tar -zxf ' fulltgz ' extra/RegIm.nii']);
+%system(['cd ' tgz_dir ' && tar -zxf ' fulltgz ' extra/scheme.txt']);
 dwi = [tgz_dir '/extra/RegIm.nii'];
 
 % Convert scheme file to bval/bvec
@@ -45,7 +45,7 @@ fclose(fid);
 
 
 % Mask file
-system(['cd ' tgz_dir ' && tar -zxf ' fulltgz ' QA_maps/Mask2_mask.nii']);
+%system(['cd ' tgz_dir ' && tar -zxf ' fulltgz ' QA_maps/Mask2_mask.nii']);
 mask = [tgz_dir '/QA_maps/Mask2_mask.nii'];
 
 % Zero out ex-mask voxels in the DWI so DSI Studio doesn't get confused
@@ -55,13 +55,13 @@ zero_exmask_dwi(dwi,mask);
 % Filenames for T1 and segmented T1
 if exist([kirby_dir '/' mprage '/NIFTI/' sess '-x-MPRAGE.nii.gz'], 'file')
     zt1 = [kirby_dir '/' mprage '/NIFTI/' sess '-x-MPRAGE.nii.gz'];
-    system(['gunzip -k ' zt1]);
+    %system(['gunzip -k ' zt1]);
     t1 = zt1(1:end-3);
 end
 
 if exist([kirby_dir '/Multi_Atlas/SEG/orig_target_seg.nii.gz'], 'file')
     zseg = [kirby_dir '/Multi_Atlas/SEG/orig_target_seg.nii.gz'];    
-    system(['gunzip -k ' zseg]);
+    %system(['gunzip -k ' zseg]);
     seg = zseg(1:end-3);
 end
 
