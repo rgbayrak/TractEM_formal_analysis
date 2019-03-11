@@ -13,8 +13,8 @@ mkdir dsistudio
 cd dsistudio
 git clone -b master git://github.com/frankyeh/DSI-Studio.git src
 xdg-open https://github.com/frankyeh/TIPL/zipball/master
-unzip frankyeh-TIPL-1f2e8a2.zip
-mv frankyeh-TIPL-1f2e8a2 image
+unzip frankyeh-TIPL-1fxxxx.zip
+mv frankyeh-TIPL-1fxxxx image
 
 cd src
 mkdir tipl
