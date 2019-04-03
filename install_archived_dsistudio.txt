@@ -1,0 +1,8 @@
+git clone theNewestVersion/DSI-Studio.git
+git checkout #fromTheArchivedVersion .
+git clone theNewestVersion/TIPL.git
+git checkout #fromTheArchivedVersion .
+
+follow instructions in install dsistudio
+Jan2018 version has image folder
+Newer ones has image/* tipl/
