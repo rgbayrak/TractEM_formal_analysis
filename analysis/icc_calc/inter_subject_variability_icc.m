@@ -1,4 +1,4 @@
-%% This script is for intra subject and intra rater reproducibility analysis for HCP tractem data
+%% This script is for intra subject and intra rater reproducibility analysis for BLSA tractem data
 % Author: roza.g.bayrak@vanderbilt.edu
 
 close all;
@@ -6,8 +6,8 @@ clear all;
 clc;
 addpath('/home-nfs/masi-shared-home/home/local/VANDERBILT/bayrakrg/masimatlab/trunk/users/bayrakrg:')
 % % Loading the data from multiple directories
-exDir              = '/share4/bayrakrg/tractEM/postprocessing/icc/';
-matDir = fullfile(exDir, 'human_icc_mat/HCP');  % directory names are as follows -> subject_rater
+exDir              = '/share4/bayrakrg/tractEM/postprocessing/metric_analysis/icc/';
+matDir = fullfile(exDir, 'human_icc_mat/BLSA');  % directory names are as follows -> subject_rater
 
 % load the directories of icc coefficients and their corresponding name files
 icc_mat_files = dir(fullfile([matDir, '/*icc.mat']));
@@ -64,6 +64,7 @@ for l = 1:length(icc_mat_files)
     uni_id = unique(id);
     uni_name = unique(name);
     
+    % I. INTRA_SUBJECT
     % grab corresponding icc coeff.
 %     for m = 1:length(uni_name)
         for d = 1:length(uni_id)
@@ -125,7 +126,7 @@ for l = 1:length(icc_mat_files)
     
     %inter-subject variability
     if length(strfind(icc_mat_files(l).name(1:end-8), '_L') == 1)
-        sum_tract = sum(icc_mat.iccL)/length(id);
+        sum_tract = (sum(icc_mat.iccL)-1)/length(id); % -1 for the comparison to itself
     sum_tract = sum_tract';
     if size(var,1) > size(sum_tract,1)
         sum_tract = [sum_tract; zeros(size(var,1) - size(sum_tract,1), 1)];
@@ -135,7 +136,7 @@ for l = 1:length(icc_mat_files)
     var = [var sum_tract];
     
     elseif length(strfind(icc_mat_files(l).name(1:end-8), '_R') == 1)
-        sum_tract = sum(icc_mat.iccR)/length(id);
+        sum_tract = (sum(icc_mat.iccR)-1)/length(id);
     sum_tract = sum_tract';
 
     if size(var,1) > size(sum_tract,1)
@@ -145,7 +146,7 @@ for l = 1:length(icc_mat_files)
     end
     var = [var sum_tract];
     else
-        sum_tract = sum(icc_mat.iccMatrix)/length(id);
+        sum_tract = (sum(icc_mat.iccMatrix)-1)/length(id);
     sum_tract = sum_tract';
 
     if size(var,1) > size(sum_tract,1)
@@ -158,17 +159,18 @@ for l = 1:length(icc_mat_files)
 end
 
 
-dis_mat = [];
-for i = 1:length(dis)
-    data = cell2mat(dis{1,i})';
-    if size(dis_mat,1) > size(data,1)
-        data = [data; zeros(size(dis_mat,1) - size(data,1), 1)];
-    else
-        dis_mat= [dis_mat; zeros(size(data,1) - size(dis_mat,1), size(dis_mat,2))];
-    end
-    dis_mat = [dis_mat data];
-end
+% dis_mat = [];
+% for i = 1:length(dis)
+%     data = cell2mat(dis{1,i})';
+%     if size(dis_mat,1) > size(data,1)
+%         data = [data; zeros(size(dis_mat,1) - size(data,1), 1)];
+%     else
+%         dis_mat= [dis_mat; zeros(size(data,1) - size(dis_mat,1), size(dis_mat,2))];
+%     end
+%     dis_mat = [dis_mat data];
+% end
 boxplot(var, 'Widths',0.7)
+grid minor;
 
 tractList61 = {'Anterior Commissure'; 'Anterior Corona Radiata Left';'Anterior Corona Radiata Right'; 'Anterior Limb Internal Capsule Left';'Anterior Limb Internal Capsule Right';'Body Corpus Callosum';...
             'Cingulum Cingulate Gyrus Left';'Cingulum Cingulate Gyrus Right'; 'Cingulum Hippocampal Left'; ...
@@ -204,7 +206,7 @@ for iG = 1:length(p)
 end
 ylim([-.04 1.04])
 % set(g,'Position', [1 1 1680 1050]);
-title('Inter-Subject Variability for HCP', 'FontSize', 16, 'FontWeight', 'Normal')
+title('Inter-Subject Variability for BLSA', 'FontSize', 16, 'FontWeight', 'Normal')
 ylabel('Intraclass Correlation','FontSize', 16)
 xticks(1:1:61)
 xticklabels(tractList61);
@@ -213,6 +215,6 @@ grid minor;
      
          
 % all_icc.date = num2str(datetime('today'));
-%save('HCP_Nov.mat', 'all_icc')
+%save('BLSA_Nov.mat', 'all_icc')
 
 
