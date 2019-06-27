@@ -10,18 +10,17 @@
 clear all;
 close all;
 
-exDir = {'/home-local/bayrakrg/Dropbox*VUMC*/complete_corrected_BLSA_subjects'
-        '/home-local/bayrakrg/Dropbox*VUMC*/complete_corrected_HCP_subjects'};
-project = {'BLSA_regions', 'HCP_regions'};
+exDir = {'/home-local/bayrakrg/Dropbox*VUMC*/complete_corrected_*_subjects'};
+project = {'regions'};
     
 for e = 1:length(exDir)
     subjectDir = fullfile(exDir{e}, '*');
     sub = fullfile(subjectDir, '*');  
     subDir = dir(fullfile(subjectDir, '*'));
     addpath('/home-nfs/masi-shared-home/home/local/VANDERBILT/bayrakrg/masimatlab/trunk/users/bayrakrg:')
- 
+    
 
-    threshold_value = {11, 13, 15}; 
+    threshold_value = {21, 25}; 
     for th = 1:length(threshold_value)
         % ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         % Here we choose what region we would like to average
@@ -30,7 +29,7 @@ for e = 1:length(exDir)
         % abbreviation of the tracts
         % and finally tract name
         threshold = strcat('threshold_', num2str(threshold_value{th}));
-        regionList = {'ROI1'}; % {'seed1', 'ROI1', 'seed2','ROI2', 'seed3', 'ROI3'};
+        regionList = {'seed'}; % {'seed1', 'ROI1', 'seed2','ROI2', 'seed3', 'ROI3'};
         % for coronal 189 - slice
         % for the rest +1
         axis = 2; % sagittal=1, coronal=2, axial=3      
@@ -40,7 +39,7 @@ for e = 1:length(exDir)
         abbList = {'ilf'}; % {'ac'; 'acr'; 'aic'; 'bcc'; 'cp'; 'cgc'; 'cgh'; 'cst'; 'fx'; 'fxst'; 'fl'; 'gcc'; 'icp'; 'ifo'; 'ilf'; 'ml'; 'm'; 'mcp'; 'ol'; 'olfr'; ...
         %            'opt'; 'pl'; 'pct'; 'pcr'; 'pic'; 'ptr'; 'ss'; 'scc'; 'scp'; 'scr'; 'sfo'; 'slf'; 'tap'; 'tl'; 'unc'};
 
-        tractList = {'inferior_longitudinal_fasciculus'}; % {'anterior_commissure';'anterior_corona_radiata';'anterior_limb_internal_capsule';'body_corpus_callosum'; ...
+        tractList = {'inferior_longitudinal_fasciculus'};% {'anterior_commissure';'anterior_corona_radiata';'anterior_limb_internal_capsule';'body_corpus_callosum'; ...
         % 'cerebral_peduncle'; 'cingulum_cingulate_gyrus';'cingulum_hippocampal';'corticospinal_tract';'fornix';'fornix_stria_terminalis';...
         % 'frontal_lobe';'genu_corpus_callosum';'inferior_cerebellar_peduncle';'inferior_fronto_occipital_fasciculus';...
         % 'inferior_longitudinal_fasciculus';'medial_lemniscus';'midbrain'; 'middle_cerebellar_peduncle';...
@@ -57,7 +56,7 @@ for e = 1:length(exDir)
             folder_name = ['/share4/bayrakrg/tractEM/postprocessing/' project{e} '/' threshold '/' tractList{1}];
             mkdir (folder_name)
             disp(' ')
-            disp([project{e} tractList{1} ' ' threshold 'folder is created!'])
+            disp(['Mixed ' tractList{1} ' ' threshold ' folder is created!'])
 
         end
         % exclude folder in the subDir if not in the tractList (QA, density or other tracts)
@@ -67,7 +66,7 @@ for e = 1:length(exDir)
         subDir = subDir(tracts);
 
         namePlot = [];
-
+        
         for t = 1:length(regionList)
             for d = 1:length(tractList)        
                 mask_tract = strcmp({subDir.name}, tractList(d));
@@ -171,7 +170,7 @@ for e = 1:length(exDir)
                             end
                         end 
                     end  
-                end
+                end  
 
                 % SAVE THE MASKS    
                 if single ~= 0  
@@ -237,7 +236,6 @@ for e = 1:length(exDir)
                             volR.img(R, :, :) = c;
                             sum(volR.img(:))
                             save_nii(volR, ['/share4/bayrakrg/tractEM/postprocessing/' project{e} filesep threshold filesep tractList{1} filesep abbList{1} '_R_' regionList{t} '.nii.gz']);
-
                         end
 
                         if ~isempty(spec_tract_dir_L)
@@ -313,8 +311,8 @@ for e = 1:length(exDir)
                             clear size;
                         end
                     end
-                    disp([project{e} ' ' tractList{1} ' ' threshold ' R_' regionList{1} ' is created!'])
-                    disp([project{e} ' ' tractList{1} ' ' threshold ' L_' regionList{1} ' is created!'])
+                    disp(['Mixed ' tractList{1} ' ' threshold ' R_' regionList{1} ' is created!'])
+                    disp(['Mixed ' tractList{1} ' ' threshold ' L_' regionList{1} ' is created!'])
                     disp('//')
                 end
             end

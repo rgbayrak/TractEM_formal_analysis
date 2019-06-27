@@ -20,7 +20,7 @@ tractList_stupid = {'anterior_commissure';'anterior_corona_radiata';'anterior_li
 'posterior_limb_internal_capsule';'posterior_thalamic_radiation';'sagittal_stratum';'splenium_corpus_callosum';'superior_cerebellar_peduncle';...
 'superior_corona_radiata';'superior_fronto_occipital_fasciculus';'superior_longitundinal_fasciculus';'tapetum_corpus_callosum';'temporal_lobe';'uncinate_fasciculus'};
 
-path = '/home-local/bayrakrg/';
+path = '/home-local/bayrakrg/Dropbox (VUMC)'; %Dropbox\ \(VUMC\)
 folders = {'complete_BLSA_subjects', 'complete_HCP_subjects', '19_new_BLSA'};
 % folders = {'auto_BLSA', 'auto_HCP'};
     
@@ -122,15 +122,15 @@ for t = 1:length(tractList_correct)
     if length(strfind(files(1).name,'_')) == 1
         N = avg / f;
         vol.img = N;        
-        save_nii(vol, ['/home-local/bayrakrg/Dropbox (VUMC)/tractEM/AVG/' tractList_correct{t} filesep 'A-AVG_' tractList_correct{t} '.nii']);
+        % save_nii(vol, ['/home-local/bayrakrg/Dropbox (VUMC)/tractEM/AVG/' tractList_correct{t} filesep 'A-AVG_' tractList_correct{t} '.nii']);
         
     elseif length(strfind(files(1).name,'_')) == 2 
         L = avgL / f;
         volL.img = L;        
-        save_nii(volL, ['/home-local/bayrakrg/Dropbox (VUMC)/tractEM/AVG/' tractList_correct{t} filesep 'A-AVG_L_' tractList_correct{t} '.nii']);
+        % save_nii(volL, ['/home-local/bayrakrg/Dropbox (VUMC)/tractEM/AVG/' tractList_correct{t} filesep 'A-AVG_L_' tractList_correct{t} '.nii']);
         R = avgR / f;
         volR.img = R;
-        save_nii(volR, ['/home-local/bayrakrg/Dropbox (VUMC)/tractEM/AVG/' tractList_correct{t} filesep 'A-AVG_R_' tractList_correct{t} '.nii']);
+        % save_nii(volR, ['/home-local/bayrakrg/Dropbox (VUMC)/tractEM/AVG/' tractList_correct{t} filesep 'A-AVG_R_' tractList_correct{t} '.nii']);
     end
     
 end
