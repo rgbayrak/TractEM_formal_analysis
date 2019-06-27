@@ -6,11 +6,11 @@ clear all;
 clc;
 
 % % Loading the data from multiple directories
-exDir              = '/share4/bayrakrg/tractEM/postprocessing/cdice/';
-matDir = fullfile(exDir, 'auto_cdice_mat/BLSA19');  % directory names are as follows -> subject_rater
+exDir              = '/share4/bayrakrg/tractEM/postprocessing/icc/';
+matDir = fullfile(exDir, 'auto_icc_mat/BLSA19');  % directory names are as follows -> subject_rater
 
 % load the directories of dice coefficients and their corresponding name files
-dice_mat_files = dir(fullfile([matDir, '/*cdice.mat']));
+dice_mat_files = dir(fullfile([matDir, '/*icc.mat']));
 name_mat_files = dir(fullfile([matDir, '/*nameMe.mat']));
 
 % abbreviation list
@@ -92,11 +92,11 @@ for l = 1:length(dice_mat_files)
                                 all_dice(count).subject = char(uni_id(d));
                                 all_dice(count).rater1 = char(temp_name(x));
                                 all_dice(count).rater2 = char(temp_name(y));
-                                all_dice(count).tract = dice_mat_files(l).name(1:end-10);  % tract name changes due to similarity matrix
+                                all_dice(count).tract = dice_mat_files(l).name(1:end-8);  % tract name changes due to similarity matrix
                                 if length(strfind(dice_mat_files(l).name,'_')) == 2
-                                    all_dice(count).tractOne = dice_mat_files(l).name(1:end-12);
-                                else
                                     all_dice(count).tractOne = dice_mat_files(l).name(1:end-10);
+                                else
+                                    all_dice(count).tractOne = dice_mat_files(l).name(1:end-8);
                                 end
                                 all_dice(count).dice = dice_mat_intra_subject(tri);
                                 count = count + 1;
@@ -109,11 +109,11 @@ for l = 1:length(dice_mat_files)
                     all_dice(count).subject = char(uni_id(d));
                     all_dice(count).rater1 = char(temp_name(1));
                     all_dice(count).rater2 = char(temp_name(2));
-                    all_dice(count).tract = dice_mat_files(l).name(1:end-10);
+                    all_dice(count).tract = dice_mat_files(l).name(1:end-8);
                     if length(strfind(dice_mat_files(l).name,'_')) == 2
-                        all_dice(count).tractOne = dice_mat_files(l).name(1:end-12);
-                    else
                         all_dice(count).tractOne = dice_mat_files(l).name(1:end-10);
+                    else
+                        all_dice(count).tractOne = dice_mat_files(l).name(1:end-8);
                     end
                     all_dice(count).dice = dice_mat_intra_subject;
                     count = count + 1;
@@ -137,6 +137,6 @@ for i = 1:length(dis)
 end
 
 % all_dice.date = num2str(datetime('today'));
-save('/home-nfs/masi-shared-home/home/local/VANDERBILT/bayrakrg/masimatlab/trunk/users/bayrakrg/tractem/analysis/reproducibility/BLSA19_auto_cdice.mat', 'all_dice')
+save('/home-nfs/masi-shared-home/home/local/VANDERBILT/bayrakrg/masimatlab/trunk/users/bayrakrg/tractem/analysis/reproducibility/BLSA19_auto_icc.mat', 'all_dice')
 
 
