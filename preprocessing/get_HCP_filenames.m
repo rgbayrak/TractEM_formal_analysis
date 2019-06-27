@@ -11,3 +11,4 @@ zmask = [hcp_dir '/T1w/Diffusion/nodif_brain_mask.nii.gz'];
 zgrad = [hcp_dir '/T1w/Diffusion/grad_dev.nii.gz'];
 bvals = [hcp_dir '/T1w/Diffusion/bvals'];
 bvecs = [hcp_dir '/T1w/Diffusion/bvecs'];
+                                                                                             
