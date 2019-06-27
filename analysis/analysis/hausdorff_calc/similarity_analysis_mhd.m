@@ -8,12 +8,12 @@ clc;
 addpath(genpath('/home-nfs/masi-shared-home/home/local/VANDERBILT/bayrakrg/masimatlab/trunk/users/bayrakrg'));
 % addpath('/share4/wangx41/regions');
 % % Data directories
-exDir              = '/share4/bayrakrg/tractEM/postprocessing/M-tracts/HCP/';
+exDir              = '/share4/bayrakrg/tractEM/postprocessing/M-tracts/BLSA/';
 subjectDir = fullfile(exDir, '*');  % directory names are as follows -> subject_rater
 
 
-abbList = {'ac'; 'acr'; 'aic'; 'bcc'; 'cp'; 'cgc'; 'cgh'; 'cst'; 'fx'; 'fxst'; 'fl'; 'gcc'; 'icp'; 'ifo'; 'ilf'; 'ml'; 'm'; 'mcp'; 'ol'; 'olfr'; ... % 
-            'opt'; 'pl'; 'pct'; 'pcr'; 'pic'; 'ptr'; 'ss'; 'scc'; 'scp'; 'scr'; 'sfo'; 'slf'; 'tap'; 'tl'; 'unc'};
+abbList = {'ac'; 'acr'; 'aic'; 'bcc'; 'cp'; 'cgc'; 'cgh'; 'cst'; 'fx'; 'fxst'; 'fl'; 'gcc'; 'icp'; 'ifo'; 'ilf'; 'ml'; 'm'; 'mcp'; 'ol'; 'olfr'; ... %  
+           'opt'; 'pl'; 'pct'; 'pcr'; 'pic'; 'ptr'; 'ss'; 'scc'; 'scp'; 'scr'; 'sfo'; 'slf'; 'tap'; 'tl'; 'unc'};
         
 % tract = {'uncinate_fasciculus'};
 subDir = fullfile(subjectDir, '*');  % tract names are defined as published
@@ -35,11 +35,11 @@ for l = 1:length(abbList)
         d = length(tractDir);
         tract = load_only_nii_img(tractDir);
         [nameMe, hd, hdmean, modHausdd, hd90] = mhd_th(tractDir, tract, threshold, d);
-        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_hd.mat'], 'hd');
-        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_hdmean.mat'], 'hdmean');
-        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_modHausdd.mat'], 'modHausdd');
-        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_hd90.mat'], 'hd90');
-        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_nameMe'], 'nameMe');
+        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_hd.mat'], 'hd');
+        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_hdmean.mat'], 'hdmean');
+        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_modHausdd.mat'], 'modHausdd');
+        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_hd90.mat'], 'hd90');
+        save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_nameMe'], 'nameMe');
 %         % plotting
 %         r = figure('Visible','off');   
 %         imagesc(mhdMatrix)
@@ -59,7 +59,7 @@ for l = 1:length(abbList)
 %                         'HorizontalAlignment', 'center');
 %         set(r,'Position', [1 1 1680 1050]);
 %         name = tractDir(1).name(1:end-15);
-%         saveas(r,['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd/HCP/' 'mhd_' name '.jpg']); 
+%         saveas(r,['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd/BLSA/' 'mhd_' name '.jpg']); 
 %         close all;
         disp([abbList{l} ' has been processed!'])
 
@@ -71,11 +71,11 @@ for l = 1:length(abbList)
             dl = length(tractLDir);
             tractL = load_only_nii_img(tractLDir);
             [nameMe, hdL, hdmeanL, modHausddL, hd90L] = mhd_th(tractLDir, tractL, threshold, dl);
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_L_hdL.mat'], 'hdL');
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_L_hdmeanL.mat'], 'hdmeanL');
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_L_modHausddL.mat'], 'modHausddL');
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_L_hd90L.mat'], 'hd90L');
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_L_nameMe'], 'nameMe');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_L_hdL.mat'], 'hdL');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_L_hdmeanL.mat'], 'hdmeanL');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_L_modHausddL.mat'], 'modHausddL');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_L_hd90L.mat'], 'hd90L');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_L_nameMe'], 'nameMe');
 %             % plotting
 %             p = figure('Visible','on');   
 %             imagesc(mhdL)
@@ -96,7 +96,7 @@ for l = 1:length(abbList)
 % 
 %             set(p,'Position', [1 1 1680 1050]);
 %             name = tractDir(1).name(1:end-15);
-%             saveas(p,['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd/HCP/' 'mhd_' name '.jpg']); 
+%             saveas(p,['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd/BLSA/' 'mhd_' name '.jpg']); 
 %             close all;
             disp([abbList{l} '_L has been processed!'])
         end
@@ -106,11 +106,11 @@ for l = 1:length(abbList)
             dr = length(tractRDir);
             tractR = load_only_nii_img(tractRDir);
             [nameMe, hdR, hdmeanR, modHausddR, hd90R] = mhd_th(tractRDir, tractR, threshold, dr);
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_R_hdR.mat'], 'hdR');
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_R_hdmeanR.mat'], 'hdmeanR');
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_R_modHausddR.mat'], 'modHausddR');
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_R_hd90R.mat'], 'hd90R');
-            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/HCP/' abbList{l} '_R_nameMe'], 'nameMe');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_R_hdR.mat'], 'hdR');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_R_hdmeanR.mat'], 'hdmeanR');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_R_modHausddR.mat'], 'modHausddR');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_R_hd90R.mat'], 'hd90R');
+            save(['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd_mat/BLSA/' abbList{l} '_R_nameMe'], 'nameMe');
 %             % plotting
 %             q = figure('Visible','off');   
 %             imagesc(mhdR)
@@ -130,7 +130,7 @@ for l = 1:length(abbList)
 %                             'HorizontalAlignment', 'center');
 %             set(q,'Position', [1 1 1680 1050]);
 %             name = tractDir(2).name(1:end-15);
-%             saveas(q,['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd/HCP/' 'mhd_' name '.jpg']); 
+%             saveas(q,['/share4/bayrakrg/tractEM/postprocessing/metric_analysis/tract/mhd/human_mhd/BLSA/' 'mhd_' name '.jpg']); 
 %             close all;
 %             clear tract; clear tractL; clear tractR;
             disp([abbList{l} '_R has been processed!'])

@@ -14,13 +14,13 @@ function [hd, hdmean, modHausdd, hd90] = HausdorffDists(P,Q)
 sP = size(P); sQ = size(Q);
 
 % loop through every point saving only min distances for each matrix
-minPs = zeros(sP(1),1);
+minPs = Inf(sP(1),1);
 for p = 1:sP(1)
     % calculate the minimum distance from points in P to Q
     minPs(p) = sqrt(min(sum( bsxfun(@minus,P(p,:),Q).^2, 2)));
 end
 
-minQs = zeros(sQ(1),1);
+minQs = Inf(sQ(1),1);
 for q = 1:sQ(1)
     % calculate the minimum distance from points in P to Q
     minQs(q) = sqrt(min(sum( bsxfun(@minus,Q(q,:),P).^2, 2)));

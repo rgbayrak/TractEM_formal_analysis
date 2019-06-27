@@ -11,7 +11,7 @@ exDir = {'/share4/wangx41/regions/BLSA', ...
         '/share4/wangx41/regions/HCP'};
 project = {'ROA_regions'};
     
-for e = 2:length(exDir)
+for e = 1:length(exDir)
     subjectDir = fullfile(exDir{e}, '*');
     sub = fullfile(subjectDir, '*');  
     subDir = dir(fullfile(subjectDir, '*'));
@@ -55,37 +55,51 @@ for e = 2:length(exDir)
         init = 0;
 
         idx = find(roa.img == 1); % find the ones in mask
+%         [row, col, v] = find(roa.img == 1);
         [x, y, z] = ind2sub(size(roa.img), idx); % get the location of the ones (index to subscript)
         coord = [x, y, z];
-
+ 
         % plot
         plt = scatter3(x,y,z, 'filled');
         xlabel('Sagital'); ylabel('Coronal'); zlabel('Axial')
         xlim([0 156]); ylim([0 189]); zlim([0 157])
         grid on; box on; hold on;
         coords{1} = coord;
+              
+        axis = [2, 3, 3];
+        slice = [133, 60, 80];
         
-        figure(2);
-        for i = 121:121
-            imagesc(squeeze(roa.img(:, i, :)))
-            disp(i)
-            pause
+        for l = 1:length(slice)
+            if axis(l) == 1
+                vol = roa;
+                b = roa.img(slice(l), :, :); 
+                figure; imagesc(squeeze(b))
+                vol.img = zeros(size(vol.img));
+                vol.img(slice(l), :, :) = b;
+                sum(vol.img(:))
+                save_nii(vol, [abbList{:} '_ROA' num2str(l) '.nii.gz']);
+            end
+ 
+            if axis(l) == 2
+                a = roa.img(:, slice(l), :); 
+                figure; imagesc(squeeze(a))
+                vol.img = zeros(size(vol.img));
+                vol.img(:, slice(l), :) = a;
+                sum(vol.img(:))
+                save_nii(vol, [abbList{:} '_ROA' num2str(l) '.nii.gz']);
+            end
+ 
+            if axis(l) == 3
+                vol = roa;
+                c = roa.img(:, :, slice(l)); 
+                figure; imagesc(squeeze(c))
+                vol.img = zeros(size(vol.img));
+                vol.img(:, :, slice(l)) = c;
+                sum(vol.img(:))
+                save_nii(vol, [abbList{:} '_ROA' num2str(l) '.nii.gz']);
+            end
         end
-        
-        axis = 2;
-        slice = 121;
-        
-        vol = roa;
-        b = roa.img(:, slice, :); 
-%         b = logical(b);
-        figure; imagesc(squeeze(b))
-        vol.img = zeros(size(vol.img));
-        vol.img(:, slice, :) = b;
-        sum(vol.img(:))
-        save_nii(vol, ['~/Desktop/', roa_extension]);
-        
-        
-        
+
         % Visualize with bin count
 %         if size(coords) ~= 0
 %             loc = vertcat(coords{:}); % this makes sense when there is multiple regions/labels
