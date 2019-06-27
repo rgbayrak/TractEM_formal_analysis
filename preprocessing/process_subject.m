@@ -2,7 +2,6 @@ function process_subject(code_dir,dsi_studio,atlas,t1,seg,dwi,mask,grad,bvals,bv
 
 % Processing stream for a single subject for DSI recons.
 
-
 % Unzip niis for SPM if needed
 atlas = unziptest(atlas);
 t1 = unziptest(t1);

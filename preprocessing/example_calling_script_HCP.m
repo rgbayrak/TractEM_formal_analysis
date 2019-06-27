@@ -1,13 +1,13 @@
 % Process HCP zip file for DSI Studio tractography work
-
+% Author: Baxter P. Rogers
 
 %% Setup
 
 % Location of DSI Studio
-dsi_studio = '/Applications/dsi_studio.app/Contents/MacOS/dsi_studio';
+dsi_studio = '/nfs/masi/bayrakrg/dsistudio/build/dsi_studio';
 
 % SPM12
-spm_dir = '/path/to/spm12';
+spm_dir = '/nfs/masi/bayrakrg/spm12';
 
 % Script location
 code_dir = '/path/to/masimatlab/trunk/users/rogersbp/dsi_scripts';
@@ -16,7 +16,7 @@ code_dir = '/path/to/masimatlab/trunk/users/rogersbp/dsi_scripts';
 % which has files with specific names in specific places. Unzip them first.
 % Directories names are assumed to be six-digit numbers. Fully qualified
 % path is required.
-hcp_dir = '/path/to/HCP';
+hcp_dir = '/home-local/bayrakrg/Dropbox (VUMC)/HCP';
 
 % Recon to use - HCP can use GQI
 model = 'GQI';
