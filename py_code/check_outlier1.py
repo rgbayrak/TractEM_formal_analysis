@@ -2,8 +2,6 @@ import numpy as np
 import glob
 import os
 
-
-
 class check_name():
     def __init__(self, first_path,file_name,error_txt,short_name,number_seeds,number_roi,number_roa):
         self.dir = []
