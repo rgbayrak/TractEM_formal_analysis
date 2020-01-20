@@ -23,7 +23,6 @@ def skip_timeout(program,timeout):
          time.sleep(4)
          subprocess.call(program,shell=True)
 
-
 def merge_seed(seed_list,out_path):
     x=np.zeros((157,189,156))
     y=np.zeros((157,189,156))
