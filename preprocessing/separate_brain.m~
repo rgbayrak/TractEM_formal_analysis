@@ -1,0 +1,13 @@
+code_dir = '/home-nfs/masi-shared-home/home/local/VANDERBILT/bayrakrg/masimatlab/trunk/users/bayrakrg/tractem/preprocessing';
+seg_file = '/share4/bayrakrg/tractEM/postprocessing/tal_T1/mask_HCP/165436';
+out_dir = '/share4/bayrakrg/tractEM/brain_regions';
+
+labels = readtable([code_dir '/make_lobes/braincolor_hierarchy_STAPLE.txt'], ...
+	'ReadVariableNames',true);
+labels.regions = zeros(size(labels.x133));
+
+% Save the label list
+writetable(labels(:,{'x133','regions'}), ...
+	fullfile(out_dir,'braincolor_region.csv'))
+
+braincolor_to_regions(seg_file,out_dir,code_dir)

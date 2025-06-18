@@ -45,6 +45,8 @@ lobenames = table(categorical({ ...
 lobenames.Label = (1:height(lobenames))';
 writetable(lobenames,fullfile(out_dir,'lobes_labels.csv'));
 labels.lobes = zeros(size(labels.x133));
+
+% assigning labels to what makes up lobes
 for k = 1:height(labels)
 	switch labels.x47(k)
 		case {5,33,35,43}
